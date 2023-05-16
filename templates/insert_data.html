@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Insert Data</title>
-</head>
-<body>
-    <h2>Insert Data</h2>
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Insert Data{% endblock %}
+{% block img %}<img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/dictionary.jpg' %}" alt="{{ results.word | title }} | Definition of {{ results.word | title }} by Ging Dictionary" >{% endblock %}
+{% block content %}
+
+<h2>Insert Data</h2>
     <form method="post" action="{% url 'insert_data' %}">
         {% csrf_token %}
         <label for="word_nihon">Word Nihon:</label>
@@ -21,5 +22,5 @@
         
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+
+{% endblock %}
