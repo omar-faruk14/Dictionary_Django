@@ -12,9 +12,6 @@ def word(request):
         return render(request, 'word.html', {'data': data})
     else:
         return render(request, 'index.html')
-def book_list(request):
-    Dic = Book.objects.all()
-    return render(request, 'book_list.html', {'books': books})
 
 def insert_data(request):
     if request.method == 'POST':
