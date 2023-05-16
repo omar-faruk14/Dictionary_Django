@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}{{ row.word_Nihon }} | Definition of {{ row.word_Nihon }} by Kotoba Connect{% endblock %}
+{% block img %}<img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/dictionary.jpg' %}" alt="{{ results.word | title }} | Definition of {{ results.word | title }} by Ging Dictionary" >{% endblock %}
+{% block content %}
+<div>
+    <h2 align="center"> {% if data %}
+        {% for row in data %}
+          <tr>
+            <td>{{ row.word_Nihon }}</td>
+         
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No data found.</p>
+  {% endif %} </h2>
+    <br>
+    <p>
+        <b>Meaning: </b>
+        {% if data %}
+        {% for row in data %}
+          <tr>
+            <td>{{ row.Word_Meaning_Eng }}</td>
+         
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No data found.</p>
+  {% endif %} </h2>
+
+
+    </p>
+    <br>
+    <p>
+        <b>Kanji: </b>
+
+        {% if data %}
+        {% for row in data %}
+          <tr>
+            <td>{{ row.word_Kanji }}</td>
+         
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No data found.</p>
+  {% endif %}
+
+
+    </p>
+    <br>
+    <p>
+        <b>Antonyms: </b>
+        {% for a in ae %}
+        <a href="/word?word={{a}}">{{a}}</a>,
+        {% endfor %}
+    </p>
+</div>
+{% endblock %}
