@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Data</title>
+</head>
+<body>
+    <h2>Insert Data</h2>
+    <form method="post" action="{% url 'insert_data' %}">
+        {% csrf_token %}
+        <label for="word_nihon">Word Nihon:</label>
+        <input type="text" name="word_nihon"><br><br>
+        
+        <label for="word_meaning_eng">Word Meaning (English):</label>
+        <input type="text" name="word_meaning_eng"><br><br>
+        
+        <label for="word_nihon_similar">Word Nihon Similar:</label>
+        <input type="text" name="word_nihon_similar"><br><br>
+        
+        <label for="word_kanji">Word Kanji:</label>
+        <input type="text" name="word_kanji"><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

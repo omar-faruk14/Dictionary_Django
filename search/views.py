@@ -15,20 +15,21 @@ def word(request):
 def book_list(request):
     Dic = Book.objects.all()
     return render(request, 'book_list.html', {'books': books})
-def add_word(request):
-    if request.method == 'GET':
-        word_nihon = request.GET.get('word_nihon')
-        word_meaning = request.GET.get('word_meaning')
-        word_nihon_similar = request.GET.get('word_nihon_similar')
-        word_kanji = request.GET.get('word_kanji')
 
-        if word_nihon and word_meaning and word_nihon_similar and word_kanji:
-            Dic.objects.create(
-                word_Nihon=word_nihon,
-                Word_Meaning_Eng=word_meaning,
-                word_Nihon_Similar=word_nihon_similar,
-                word_Kanji=word_kanji
-            )
-            # Redirect to a success page or display a success message
-
-    return render(request, 'add_word.html')
+def insert_data(request):
+    if request.method == 'POST':
+        word_nihon = request.POST.get('word_nihon')
+        word_meaning_eng = request.POST.get('word_meaning_eng')
+        word_nihon_similar = request.POST.get('word_nihon_similar')
+        word_kanji = request.POST.get('word_kanji')
+        
+        Dic.objects.create(
+            word_Nihon=word_nihon,
+            Word_Meaning_Eng=word_meaning_eng,
+            word_Nihon_Similar=word_nihon_similar,
+            word_Kanji=word_kanji
+        )
+        
+        return render(request, 'success.html')
+    
+    return render(request, 'insert_data.html')
