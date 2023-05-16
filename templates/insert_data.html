@@ -2,25 +2,25 @@
 {% load static %}
 
 {% block title %}Insert Data{% endblock %}
-{% block img %}<img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/dictionary.jpg' %}" alt="{{ results.word | title }} | Definition of {{ results.word | title }} by Ging Dictionary" >{% endblock %}
+{% block img %}
+    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/dictionary.jpg' %}" alt="{{ results.word | title }} | Definition of {{ results.word | title }} by Ging Dictionary">
+{% endblock %}
 {% block content %}
-
-<h2>Insert Data</h2>
+    <h2>Insert Data</h2>
     <form method="post" action="{% url 'insert_data' %}">
         {% csrf_token %}
         <label for="word_nihon">Word Nihon:</label>
-        <input type="text" name="word_nihon"><br><br>
+        <input type="text" name="word_nihon" class="form-control"><br><br>
         
         <label for="word_meaning_eng">Word Meaning (English):</label>
-        <input type="text" name="word_meaning_eng"><br><br>
+        <input type="text" name="word_meaning_eng" class="form-control"><br><br>
         
         <label for="word_nihon_similar">Word Nihon Similar:</label>
-        <input type="text" name="word_nihon_similar"><br><br>
+        <input type="text" name="word_nihon_similar" class="form-control"><br><br>
         
         <label for="word_kanji">Word Kanji:</label>
-        <input type="text" name="word_kanji"><br><br>
+        <input type="text" name="word_kanji" class="form-control"><br><br>
         
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="btn btn-primary">
     </form>
-
 {% endblock %}

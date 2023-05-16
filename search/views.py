@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Dic
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -30,3 +32,27 @@ def insert_data(request):
         return render(request, 'success.html')
     
     return render(request, 'insert_data.html')
+
+from django.core.paginator import Paginator
+
+def display_data(request):
+    words = Dic.objects.all()
+    
+    paginator = Paginator(words, 10)  # Show 10 words per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'display_data.html', {'page_obj': page_obj})
+
+def search_data(request):
+    if request.method == 'GET':
+        search_query = request.GET.get('search_query')
+        words = Dic.objects.filter(word_Nihon__icontains=search_query)
+        
+        paginator = Paginator(words, 10)  # Show 10 words per page
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        
+        return render(request, 'display_data.html', {'page_obj': page_obj, 'search_query': search_query})
+
+    return redirect('display_data')

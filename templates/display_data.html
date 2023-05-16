@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Data</title>
+</head>
+<body>
+    <h2>Display Data</h2>
+    
+    <form method="get" action="{% url 'search_data' %}">
+        <input type="text" name="search_query" placeholder="Search by Word Nihon" value="{{ search_query }}">
+        <input type="submit" value="Search">
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Word ID</th>
+                <th>Word Nihon</th>
+                <th>Word Meaning (English)</th>
+                <th>Word Nihon Similar</th>
+                <th>Word Kanji</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word in page_obj %}
+            <tr>
+                <td>{{ word.word_ID }}</td>
+                <td>{{ word.word_Nihon }}</td>
+                <td>{{ word.Word_Meaning_Eng }}</td>
+                <td>{{ word.word_Nihon_Similar }}</td>
+                <td>{{ word.word_Kanji }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current-page">{{ page_obj.number }}</span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
